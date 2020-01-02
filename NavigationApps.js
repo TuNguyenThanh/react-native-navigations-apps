@@ -18,7 +18,6 @@ import googleMapsIcon from "./assets/googleMapsIcon.png";
 import mapsIcon from "./assets/mapsIcon.png";
 
 const waze = {
-
     title: 'waze',
     icon: wazeIcon,
     address: '',
@@ -117,7 +116,7 @@ class NavigationApps extends Component {
     handleNavApp = async (navApp) => {
 
 
-        const {address} = this.props;
+        const {address, onFail} = this.props;
         const {navApps} = this.state;
         const navAppItem = navApps[navApp];
         const {storeUri, appDeepLinkUri} = navApp;
@@ -139,7 +138,7 @@ class NavigationApps extends Component {
 
         }
         catch (e) {
-            alert(e)
+          onFail();
         }
 
     };
