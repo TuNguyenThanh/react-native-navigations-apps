@@ -101,9 +101,9 @@ class NavigationApps extends Component {
                             ...maps,
                             ...props.maps,
                             appDeepLinkUri: 'maps://app',
-                            appDeepLinkUriToUse: 'maps://app?',
+                            appDeepLinkUriToUse: 'http://maps.apple.com/?ll=',
                             navigateByAddress: ({addressToNavigate, travelMode}) => encodeURI(this.state.navApps.maps.appDeepLinkUriToUse + `daddr=${addressToNavigate}&dirflg=${travelMode}`),
-                            navigateByLatAndLon: ({addressToNavigate, travelMode, lat, lon}) => encodeURI(this.state.navApps.maps.appDeepLinkUriToUse + `daddr=${addressToNavigate}&dirflg=${travelMode}&ll=${lat},${lon}`),
+                            navigateByLatAndLon: ({addressToNavigate, travelMode, lat, lon}) => encodeURI(this.state.navApps.maps.appDeepLinkUriToUse + `${lat},${lon}`),
                             searchLocationByLatAndLon: ({lat, lon}) => encodeURI(this.state.navApps.maps.appDeepLinkUriToUse + `ll=${lat},${lon}`)
 
                         },
