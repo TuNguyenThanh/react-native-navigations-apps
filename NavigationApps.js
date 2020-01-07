@@ -87,7 +87,7 @@ class NavigationApps extends Component {
               appDeepLinkUriToUse: 'https://www.google.com/maps/',
               storeUri: 'market://details?id=com.google.android.apps.maps',
               navigateByAddress: ({address, travelMode}) => this.state.navApps.googleMaps.appDeepLinkUriToUse + `dir/?api=1&destination=${address}&travelmode=${travelMode}`,
-              navigateByLatAndLon: ({address, travelMode, lat, lon}) => encodeURI(this.state.navApps.googleMaps.appDeepLinkUriToUse + `search/?api=1&query=${lat},${lon}`),
+              navigateByLatAndLon: ({addressToNavigate, travelMode, lat, lon}) => encodeURI('https://www.google.com/maps/search/?api=1&query='+addressToNavigate),
               searchLocationByLatAndLon: ({lat, lon}) => encodeURI(this.state.navApps.googleMaps.appDeepLinkUriToUse + `search/?api=1&query=${lat},${lon}`)
             }
           }),
