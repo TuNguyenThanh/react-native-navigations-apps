@@ -140,17 +140,14 @@ class NavigationApps extends Component {
     catch (e) {
       onFail();
     }
-
   };
 
   renderNavigationApps = () => {
-    const {iconSize, mapNotAvailable} = this.props;
+    const {iconSize} = this.props;
     const {navApps} = this.state;
     return (
       Object.keys(navApps).map((navApp, key) => {
         const navAppItem = navApps[navApp];
-        if(mapNotAvailable.indexOf(navApp) !== -1)
-          return null
 
         return (
           <TouchableOpacity onPress={() => this.handleNavApp(navApp)} key={key}>
@@ -312,11 +309,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   }
-
 });
 
 NavigationApps.defaultProps = {
-
   iconSize: 100,
   viewMode: 'view',
   row: false,
