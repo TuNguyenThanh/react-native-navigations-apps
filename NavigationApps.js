@@ -133,7 +133,7 @@ handleNavApp = async (navApp) => {
         }
       })
       .catch((e) => {
-        console.log(e)
+        onFail()
       })
 }
   
