@@ -113,35 +113,30 @@ class NavigationApps extends Component {
     this.actionSheetRef = null;
   }
 
-  handleNavApp = async (navApp) => {
-
-
-    const {address, onFail} = this.props;
-    const {navApps} = this.state;
-    const navAppItem = navApps[navApp];
-    const {storeUri, appDeepLinkUri} = navApp;
-
-    const addressToNavigate = navAppItem.address ? navAppItem.address : address;
-
-    const lat = navAppItem.lat ? navAppItem.lat : '';
-    const lon = navAppItem.lon ? navAppItem.lon : '';
-    const travelMode = navAppItem.travelMode ? navAppItem.travelMode : '';
-    const navAppUri = navAppItem[navAppItem.action]({addressToNavigate, lat, lon, travelMode});
-
-    try {
-      const supported = await Linking.canOpenURL(navAppItem.appDeepLinkUri);
-      if (!supported) {
-        return await Linking.openURL(storeUri);
-      } else {
-        return await Linking.openURL(navAppUri);
-      }
-
-    }
-    catch (e) {
-      onFail();
-    }
-  };
-
+handleNavApp = async (navApp) => {
+    const {address, onFail} = this.props
+    const {navApps} = this.state
+    const navAppItem = navApps[navApp]
+    const {storeUri, appDeepLinkUri} = navAppItem
+    const addressToNavigate = navAppItem.address ? navAppItem.address : address
+    const lat = navAppItem.lat ? navAppItem.lat : ''
+    const lon = navAppItem.lon ? navAppItem.lon : ''
+    const travelMode = navAppItem.travelMode ? navAppItem.travelMode : ''
+    const navAppUri = navAppItem[navAppItem.action]({addressToNavigate, lat, lon, travelMode})
+    Linking.canOpenURL(navAppItem.appDeepLinkUri)
+      .then((isOpen) => {
+        console.log(isOpen)
+        if (isOpen) {
+          Linking.openURL(navAppUri)
+        } else {
+          Linking.openURL(storeUri)
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+}
+  
   renderNavigationApps = () => {
     const {iconSize} = this.props;
     const {navApps} = this.state;
